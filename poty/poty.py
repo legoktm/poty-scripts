@@ -17,6 +17,9 @@ from poty.round import Round
 from poty.sites import COMMONS, META
 from poty.utils.properties import cachedproperty
 
+MONTHS = ['January', 'February', 'March', 'April', 'May', 'June',
+          'July', 'August', 'September', 'October', 'November', 'December']
+
 
 class POTY(int):
     def __new__(cls, year=None):
@@ -58,10 +61,7 @@ class POTY(int):
             Round(
                 self, 0,
                 candidates=FPParser(
-                    pages=[
-                        'Commons:Featured pictures/chronological/%s-A' % self,
-                        'Commons:Featured pictures/chronological/%s-B' % self,
-                    ],
+                    pages=['Commons:Featured pictures/chronological/%s %s' % (month, self) for month in MONTHS],
                 ),
             ),
             Round(

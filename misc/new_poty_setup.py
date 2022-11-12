@@ -24,7 +24,7 @@ SITE = pywikibot.Site()
 
 
 def is_translation(page):
-    url = "%s/index.php?title=%s" % (SITE.scriptpath(), page.title(asUrl=True))
+    url = "%s/index.php?title=%s" % (SITE.scriptpath(), page.title(as_url=True))
     return '"wgTranslatePageTranslation":"translation"' in http.request(
         SITE, url)
 

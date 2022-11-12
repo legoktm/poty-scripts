@@ -142,6 +142,10 @@ class FPParser(CandidatesParser):
 
             if re.match(r'^{{Fp-log-chron-header\|[^{}]+}}$', line):
                 assert not ingallery
+            elif line.startswith('[[Category:'):
+                assert not ingallery
+            elif line.startswith('{{mbox|text='):
+                assert not ingallery
             elif line == '<gallery>':
                 assert not ingallery
                 ingallery = True

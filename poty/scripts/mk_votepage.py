@@ -4,6 +4,9 @@
 from __future__ import absolute_import, unicode_literals
 
 import argparse
+import sys
+
+sys.path.append('/home/user/github/Commons-POTY/poty-scripts')
 
 from poty.poty import POTY
 
@@ -32,6 +35,7 @@ def main(*args):
 """ % (poty, poty)
         if votepage.text.strip() != newtext.strip():
             votepage.text = newtext
+            return
             votepage.save(
                 'Create POTY R%d vote page for %s' % (
                     round.num,

@@ -5,8 +5,8 @@ import traceback
 import pywikibot
 import pywikibot.pagegenerators
 
-PREV_YEAR = '2019'
-CUR_YEAR = '2020'
+PREV_YEAR = '2020'
+CUR_YEAR = '2021'
 
 pywikibot.config.put_throttle = 0
 
