@@ -12,6 +12,8 @@ import pywikibot
 from pywikibot.comms import http
 from pywikibot.pagegenerators import PrefixingPageGenerator
 
+pywikibot.config.put_throttle = 0
+
 try:
     input = raw_input
 except NameError:
@@ -35,7 +37,9 @@ def setup(src):
         SITE,
         src.title().replace(str(YEAR), str(YEAR+1)).replace(str(LAST), str(YEAR))
     )
-    # if target.exists(): return
+    print(target)
+    if target.exists():
+        return
     if is_translation(src):
         return
     text_o = target.text
@@ -44,19 +48,12 @@ def setup(src):
         return
 
     pywikibot.output('>>> %s <<<' % target.title())
-    pywikibot.showDiff(text_o, target.text)
+    # pywikibot.showDiff(text_o, target.text)
 
-    while True:
-        r = input('Save? [y/n] ').lower().strip()
-        if r == 'n':
-            return
-        elif r == 'y':
-            try:
-                target.save('POTY %d' % YEAR)
-            except Exception:
-                traceback.print_exc()
-
-            return
+    try:
+        target.save('POTY %d' % YEAR)
+    except Exception:
+        traceback.print_exc()
 
 
 prefixes = [
@@ -69,9 +66,9 @@ prefixes = [
     'Category:Pictures of the Year',
 ]
 forcepages = [
-    'MediaWiki:Gadget-EnhancedPOTY.js',
-    'MediaWiki:Gadget-POTYEnhancements.js',
-    'MediaWiki:Gadget-POTYEnhancements.core.css'
+    # 'MediaWiki:Gadget-EnhancedPOTY.js',
+    # 'MediaWiki:Gadget-POTYEnhancements.js',
+    # 'MediaWiki:Gadget-POTYEnhancements.core.css'
     'Help:Picture of the Year',
     'MediaWiki:Abusefilter-warning-potycontact'
     # 'MediaWiki:Titleblacklist',

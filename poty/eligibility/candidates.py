@@ -38,7 +38,7 @@ class FPCategorizer(object):
         def get_category(filepage):
             fpcs = set()
 
-            for fpc_page in filepage.usingPages():
+            for fpc_page in filepage.using_pages():
                 if not fpc_page.title().startswith(
                         'Commons:Featured picture candidates/'):
                     continue
@@ -69,8 +69,8 @@ class FPCategorizer(object):
             for template, params in fpc_page.templatesWithParams():
                 if template == fpc_res_template:
                     for param in params:
-                        if param.startswith('category='):
-                            return param[len('category='):].replace('_', ' ')
+                        if param.startswith('gallery='):
+                            return param[len('gallery='):].replace('_', ' ')
 
         def singular(words):
             exceptions = {'glass', 'ous'}
@@ -114,6 +114,7 @@ class FPCategorizer(object):
         for category in self.categories:
             for token in poty_tokenizer(', '.join(category)):
                 poty_tokens[token] = category
+        print(poty_tokens)
 
         def fp_tokenizer(catstr):
             catstr = catstr.replace('#', '/')
@@ -129,7 +130,9 @@ class FPCategorizer(object):
 
         def mapfunc(candidate):
             cat = get_category(candidate)
+            print(f'found {cat}')
             token, target = match(cat)
+            print(f'matched to {token}, {target}')
             candidate.comment = '%s => %s => %s' % (cat, token, target)
             candidate.category = target
 

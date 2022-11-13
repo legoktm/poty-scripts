@@ -4,6 +4,10 @@
 from __future__ import absolute_import, unicode_literals
 
 import argparse
+import sys
+
+sys.path.append('/home/user/github/Commons-POTY/poty-scripts')
+
 
 from poty.poty import POTY
 

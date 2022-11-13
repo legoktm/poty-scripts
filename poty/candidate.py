@@ -20,4 +20,4 @@ class Candidate(pywikibot.FilePage):
 
     @property
     def nons_title(self):
-        return self.title(withNamespace=False)
+        return self.title(with_ns=False)

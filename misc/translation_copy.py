@@ -21,7 +21,7 @@ old_pages_data = collections.defaultdict(lambda: collections.defaultdict(dict))
 
 for prefix in prefixes:
     old_pg_gen = pywikibot.pagegenerators.PrefixingPageGenerator(prefix.format(PREV_YEAR), site=SITE)
-    old_pg_gen = pywikibot.pagegenerators.PreloadingGenerator(old_pg_gen)
+    old_pg_gen = pywikibot.pagegenerators.PreloadingGenerator(old_pg_gen, groupsize=250)
 
     for old_page in old_pg_gen:
         reobj = re.match(r'^Translations:(.+)/(\d+|Page display title)/([a-z-]+)$', old_page.title())

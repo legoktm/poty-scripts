@@ -8,6 +8,10 @@ import sys
 
 sys.path.append('/home/user/github/Commons-POTY/poty-scripts')
 
+import pywikibot
+
+pywikibot.config.put_throttle = 0
+
 from poty.poty import POTY
 
 
@@ -35,11 +39,13 @@ def main(*args):
 """ % (poty, poty)
         if votepage.text.strip() != newtext.strip():
             votepage.text = newtext
-            return
+            print('--------------')
+            print(votepage.title())
+            print(votepage.text)
             votepage.save(
                 'Create POTY R%d vote page for %s' % (
                     round.num,
-                    candidate.title(asLink=True)),
+                    candidate.title(as_link=True)),
                 watch='nochange')
 
 
